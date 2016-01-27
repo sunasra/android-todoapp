@@ -9,11 +9,39 @@
     tools:showIn="@layout/activity_main"
     tools:context="com.example.manzurhusain.totoapp.MainActivityFragment"
     >
-
-    <TextView
-        android:text="Hello World!"
+  <EditText
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/taskTitleInput"
+      android:layout_above="@+id/listRecyclerView"
+      />
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      >
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/priorityInput"
+        android:hint="Add Priority"
+        />
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/dueDateInput"
+        android:hint="Add Due date"
+
+        />
+  </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scrollbars="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         />
 
 </RelativeLayout>
