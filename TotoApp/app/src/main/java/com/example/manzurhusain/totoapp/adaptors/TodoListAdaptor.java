@@ -41,7 +41,7 @@ public class TodoListAdaptor extends RecyclerView.Adapter<TodoListAdaptor.TodoIt
     return eachTodos.size();
   }
 
-  public void addItem(EachTodo eachTodo,int index){
+  public void addItem(EachTodo eachTodo, int index){
     eachTodos.add(eachTodo);
     notifyItemInserted(index);
   }

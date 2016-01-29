@@ -2,46 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:showIn="@layout/activity_main"
     tools:context="com.example.manzurhusain.totoapp.MainActivityFragment"
     >
-  <EditText
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/taskTitleInput"
-      android:layout_above="@+id/listRecyclerView"
-      />
-  <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      >
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/priorityInput"
-        android:hint="Add Priority"
-        />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dueDateInput"
-        android:hint="Add Due date"
+        android:id="@+id/taskTitleInput"
+        android:hint="@string/taskTitleHint"
+        android:layout_marginTop="30dp"
 
         />
-  </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/metaTodoInput"
+        android:layout_below="@+id/taskTitleInput"
+        >
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/priorityInput"
+            android:hint="@string/priorityHintTxt"
+            android:inputType="number"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dueDateInput"
+            android:inputType="date"
+            android:hint="@string/dueDateStr"
+
+            />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="100dp"
         android:scrollbars="vertical"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/buttonAdd"
+        android:layout_below="@+id/taskTitleInput"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         />
 
 </RelativeLayout>

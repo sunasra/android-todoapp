@@ -1,4 +1,7 @@
 <resources>
   <string name="app_name">TotoApp</string>
   <string name="action_settings">Settings</string>
+  <string name="dueDateStr">Add Due date</string>
+  <string name="priorityHintTxt">Add Priority</string>
+  <string name="taskTitleHint">Task Title</string>
 </resources>

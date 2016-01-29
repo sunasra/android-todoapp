@@ -3,6 +3,9 @@ package com.example.manzurhusain.totoapp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,29 +20,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-  private RecyclerView recyclerView;
-  private RecyclerView.Adapter mAdapter;
-  private RecyclerView.LayoutManager layoutManager;
-  private ArrayList<EachTodo> eachTodos;
-
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    eachTodos = new ArrayList<EachTodo>();
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    MainActivityFragment mainActivityFragment = new MainActivityFragment();
+    fragmentTransaction.add(R.id.homeFragContainer, mainActivityFragment, "taskListHome");
+    fragmentTransaction.commit();
 
-    EachTodo eachTodoObj = new EachTodo();
-    eachTodoObj.setTitle("Hello");
-    eachTodoObj.setPriority(1);
-    eachTodoObj.setDueDate("27/Jan/2015");
-    eachTodos.add(0, eachTodoObj);
-
-    recyclerView = (RecyclerView)findViewById(R.id.listRecyclerView);
-    layoutManager = new LinearLayoutManager(this);
-    recyclerView.setLayoutManager(layoutManager);
-    mAdapter = new TodoListAdaptor(this,eachTodos);
-    recyclerView.setAdapter(mAdapter);
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
