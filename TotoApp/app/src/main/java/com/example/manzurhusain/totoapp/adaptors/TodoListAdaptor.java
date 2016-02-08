@@ -2,6 +2,7 @@ package com.example.manzurhusain.totoapp.adaptors;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,13 @@ import java.util.ArrayList;
 public class TodoListAdaptor extends RecyclerView.Adapter<TodoListAdaptor.TodoItemViewHolder> {
   private Context context;
   private ArrayList<EachTodo> eachTodos;
+  private ArrayList<EachTodo> trashedTodo;
+
 
   public TodoListAdaptor(Context context, ArrayList<EachTodo> eachTodos) {
     this.context = context;
     this.eachTodos = eachTodos;
+    this.trashedTodo = new ArrayList<EachTodo>();
   }
 
   @Override public TodoItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,6 +41,7 @@ public class TodoListAdaptor extends RecyclerView.Adapter<TodoListAdaptor.TodoIt
 
   }
 
+
   @Override public int getItemCount() {
     return eachTodos.size();
   }
@@ -46,9 +51,14 @@ public class TodoListAdaptor extends RecyclerView.Adapter<TodoListAdaptor.TodoIt
     notifyItemInserted(index);
   }
 
-  public void deleteItem(int index){
+  public void deleteItem(int index) {
+    trashedTodo.add(eachTodos.get(index));
     eachTodos.remove(index);
     notifyItemRemoved(index);
+  }
+
+  public ArrayList<EachTodo> getAllRecycleTodos(){
+    return trashedTodo;
   }
 
   public class TodoItemViewHolder extends RecyclerView.ViewHolder{

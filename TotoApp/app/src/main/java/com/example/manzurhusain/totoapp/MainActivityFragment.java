@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,10 @@ public class MainActivityFragment extends Fragment {
     mAdapter = new TodoListAdaptor(getContext(),eachTodos);
     recyclerView.setAdapter(mAdapter);
 
+    ItemTouchHelper.Callback callback = new TodoTouchHelper(mAdapter);
+    ItemTouchHelper helper = new ItemTouchHelper(callback);
+    helper.attachToRecyclerView(recyclerView);
+
     addTaskBtn.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
 
@@ -65,6 +70,30 @@ public class MainActivityFragment extends Fragment {
     });
 
     return main;
+  }
+}
+
+class TodoTouchHelper extends ItemTouchHelper.SimpleCallback {
+  private TodoListAdaptor todoListAdaptor;
+  private ArrayList<EachTodo> trashedTodo;
+
+  public TodoTouchHelper(TodoListAdaptor movieAdapter){
+    super(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+    this.todoListAdaptor = movieAdapter;
+    trashedTodo = new ArrayList<EachTodo>();
+  }
+
+  @Override
+  public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+    //TODO: Not implemented here
+    return false;
+  }
+
+  @Override
+  public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+    //Remove item
+    todoListAdaptor.deleteItem(viewHolder.getAdapterPosition());
+    trashedTodo = todoListAdaptor.getAllRecycleTodos();
   }
 }
 
